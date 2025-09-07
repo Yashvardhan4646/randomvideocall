@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Random Video Call</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f0f0f, #1e1e1e);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+    }
+    header {
+      padding: 15px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-align: center;
+      background: #ff6a00;
+      width: 100%;
+    }
+    #videos {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      padding: 20px;
+    }
+    video {
+      width: 45%;
+      background: #000;
+      border-radius: 16px;
+      border: 2px solid #ff6a00;
+    }
+    #controls {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 15px;
+    }
+    button {
+      background: #222;
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #ff6a00;
+    }
+    /* Chat Box */
+    #chatBox {
+      width: 90%;
+      max-width: 700px;
+      background: #1c1c1c;
+      border: 1px solid #333;
+      border-radius: 12px;
+      margin: 15px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    #messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      height: 150px;
+    }
+    .msg {
+      margin: 5px 0;
+      padding: 8px 12px;
+      border-radius: 8px;
+      max-width: 70%;
+    }
+    .me {
+      background: #ff6a00;
+      align-self: flex-end;
+    }
+    .partner {
+      background: #444;
+      align-self: flex-start;
+    }
+    #chatInput {
+      display: flex;
+      border-top: 1px solid #333;
+    }
+    #chatInput input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      border-radius: 0;
+    }
+    #chatInput button {
+      border-radius: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>🎥 Random Video Call</header>
+
+  <div id="videos">
+    <video id="localVideo" autoplay playsinline muted></video>
+    <video id="remoteVideo" autoplay playsinline></video>
+  </div>
+
+  <div id="controls">
+    <button id="findBtn">Find Partner</button>
+    <button id="skipBtn" style="display:none;">Skip</button>
+    <button id="muteBtn" style="display:none;">Mute</button>
+    <button id="camBtn" style="display:none;">Turn Camera Off</button>
+    <button id="endBtn" style="display:none;">End</button>
+  </div>
+
+  <!-- Chat Box -->
+  <div id="chatBox" style="display:none;">
+    <div id="messages"></div>
+    <div id="chatInput">
+      <input type="text" id="msgField" placeholder="Type a message...">
+      <button id="sendBtn">Send</button>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
